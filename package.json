@@ -1,0 +1,27 @@
+{
+  "name": "razorpay_integration",
+  "version": "1.0.0",
+  "description": "Razorpay integration in node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "keywords": [
+    "Razorpay",
+    "nodejs"
+  ],
+  "author": "Vikash Kumar",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.7.7",
+    "razorpay": "^2.0.6",
+    "sha256": "^0.2.0",
+    "swagger-jsdoc": "^4.0.0",
+    "swagger-ui-express": "^4.1.4"
+  }
+}
