@@ -61,5 +61,7 @@ module.exports = (app) => {
      *         description: VerifySignature
      */
     app.post('/api/VerifySignature', razorpay.VerifySignature);
+
+    app.get('/api/payment',razorpay.payment);
     
 }

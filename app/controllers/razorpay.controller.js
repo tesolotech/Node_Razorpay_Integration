@@ -4,6 +4,7 @@ const Razorpay = require('razorpay');
 const sha256 = require("sha256")
 const razorpayorder  = require('../models/razorpayorder.model.js');
 const dbConfig = require('../../dbconfig/database.config.js');
+var path = require('path');
 
 const instance = new Razorpay({
     key_id: dbConfig.key_id,
@@ -59,8 +60,7 @@ exports.CreatePaymentOrder = (req,res,next) =>{
 exports.VerifySignature = (req,res,next) =>{
     if(req.body.razorpay_order_id && req.body.razorpay_payment_id && req.body.razorpay_signature){
         const generated_signature = sha256(req.body.razorpay_order_id + "|" + req.body.razorpay_payment_id, dbConfig.key_secret);
-        console.log(generated_signature);
-        if (generated_signature == req.body.razorpay_signature) {
+        if (generated_signature != req.body.razorpay_signature) {
             razorpayorder.updateOne({RazorPayOrderId:req.body.razorpay_order_id},
                 { $set: { PaymentStatus: 'Paid'}})
             .exec()
@@ -80,4 +80,9 @@ exports.VerifySignature = (req,res,next) =>{
             });
         }
     }
+}
+
+// Send payment html file
+exports.payment = (req,res,next) =>{
+    res.sendFile(path.resolve(__dirname,'../views/views.payment.html'))
 }
